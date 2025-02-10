@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        #background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        #background-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        #content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        h1 {
+            color: #ff6600;
+            font-size: 4em;
+            text-shadow: 2px 2px 4px #000000;
+        }
+
+        button {
+            padding: 20px 40px;
+            margin: 20px;
+            font-size: 1.4em;
+            cursor: pointer;
+            background-color: #ff9900;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff6600;
+        }
+
+        .fire-effect {
+            animation: fire 2s linear infinite;
+        }
+
+        @keyframes fire {
+            0% {
+                text-shadow: 2px 2px 4px #ff0000;
+            }
+            50% {
+                text-shadow: -2px -2px 4px #ffff00;
+            }
+            100% {
+                text-shadow: 2px 2px 4px #ff0000;
+            }
+        }
+
+        #discord-icon {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 70px;
+            height: 70px;
+            background-image: url('assets/discord.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            transition: opacity 0.3s ease;
+        }
+
+        #discord-icon:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="background-container">
+        <iframe id="background-iframe" src="background.html"></iframe>
+    </div>
+
+    <div id="content">
+        <h1 class="fire-effect">Welcome!</h1>
+        <button onclick="window.location.href='games.html'">Game Hub</button>
+        <button onclick="window.location.href='cloudgaming.html'">Cloud Gaming</button>
+        <button onclick="window.location.href='apps.html'">Apps</button>
+        <button onclick="window.location.href='proxy.html'">Proxy</button>
+    </div>
+
+    <div id="discord-icon" onclick="window.open('https://discord.gg/qPf237Ua4P', '_blank')"></div>
+
+</body>
+</html>

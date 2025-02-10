@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>Ashen Hub</title>
+    <meta name="description" content="The cleanest looking game hub." />
+    <meta name="keywords" content="proxy, web proxy, ultraviolet, service workers, unblock websites, unblock chromebook, free web proxy, proxy list, proxy sites, un block chromebook, online proxy, proxy server, proxysite, proxy youtube, bypass securly, bypass iboss, bypass lightspeed filter, holy unblocker, chromebooks, titanium network, unblock youtube, youtube proxy, unblocked youtube, youtube unblocked" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e" />
+    <meta name="googlebot" content="index, follow, snippet" />
+    <link rel="shortcut icon" content="favicon.ico" />
+    <link rel="stylesheet" href="index.css" />
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        if (!urlParams.has('test')) {
+            document.write('<meta http-equiv="refresh" content="0; url=src/index.html">');
+        } else {
+            // Continue with the rest of the script loading only if 'test' param is present
+            document.write('<script src="baremux/index.js" defer><\/script>');
+            document.write('<script src="epoxy/index.js" defer><\/script>');
+            document.write('<script src="uv/uv.bundle.js" defer><\/script>');
+            document.write('<script src="uv/uv.config.js" defer><\/script>');
+            document.write('<script src="register-sw.js" defer><\/script>');
+            document.write('<script src="search.js" defer><\/script>');
+            document.write('<script src="index.js" defer><\/script>');
+            document.write('<\/script>');
+
+
+            // Overlay and fullscreen logic
+            document.addEventListener('DOMContentLoaded', function() {
+                const fullscreenOverlay = document.createElement('div');
+                fullscreenOverlay.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 9999; /* Ensure it's on top */
+                `;
+
+                const fullscreenButton = document.createElement('button');
+                fullscreenButton.textContent = 'Enter Fullscreen To Continue';
+                fullscreenButton.style.cssText = `
+                    padding: 10px 20px;
+                    background-color: #4CAF50; /* Green */
+                    color: white;
+                    border: none;
+                    cursor: pointer;
+                    font-size: 16px;
+                `;
+
+                fullscreenOverlay.appendChild(fullscreenButton);
+                document.body.appendChild(fullscreenOverlay);
+
+                fullscreenButton.addEventListener('click', function() {
+                    if (document.documentElement.requestFullscreen) {
+                        document.documentElement.requestFullscreen();
+                    } else if (document.documentElement.mozRequestFullScreen) { /* Firefox */
+                        document.documentElement.mozRequestFullScreen();
+                    } else if (document.documentElement.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                        document.documentElement.webkitRequestFullscreen();
+                    } else if (document.documentElement.msRequestFullscreen) { /* IE/Edge */
+                        document.documentElement.msRequestFullscreen();
+                    }
+
+                    fullscreenOverlay.style.display = 'none'; // Hide overlay after click
+                });
+            });
+
+
+        }
+    </script>
+</head>
+<body>
+    <div title="Ultraviolet Logo" class="flex-center logo-wrapper header-center">
+        <img class="logo" src="uv.png" alt="Ultraviolet" />
+        <h1>Ultraviolet | TN</h1>
+    </div>
+    <div class="flex-center desc left-margin">
+        <p>
+            Ultraviolet is highly sophisticated proxy used for evading internet
+            censorship.
+        </p>
+    </div>
+
+    <form id="uv-form" class="flex-center">
+        <input id="uv-search-engine" value="https://www.google.com/search?q=%s" type="hidden" />
+        <input id="uv-address" type="text" placeholder="Search the web freely" />
+    </form>
+    <div class="desc left-margin">
+        <p id="uv-error"></p>
+        <pre id="uv-error-code"></pre>
+    </div>
+    <footer>
+        <div>
+            <a title="The TitaniumNetwork GitHub organization" href="https://github.com/titaniumnetwork-dev">TitaniumNetwork</a>
+            <a title="The TitaniumNetwork Discord" href="https://discord.gg/unblock">Discord</a>
+            <a title="The TompHTTP GitHub organization" href="https://github.com/tomphttp">TompHTTP</a>
+            <a title="The official deployment repository for Ultraviolet" href="https://github.com/titaniumnetwork-dev/Ultraviolet-App">GitHub</a>
+            <a title="License information" href="credits.html">Credits</a>
+        </div>
+        <div>
+            <span>Ultraviolet &copy; TN 2023</span>
+        </div>
+    </footer>
+    <iframe style="display: none;" id="uv-frame"></iframe>
+</body>
+</html>

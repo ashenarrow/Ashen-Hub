@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Proxy</title>
+<style>
+body {
+  font-family: sans-serif;
+  background-color: #222;
+  color: #eee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #333; /* Optional main page background */
+}
+
+h1 {
+  color: #ffcc00;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  border: 1px solid #666;
+  background-color: #333;
+  color: #eee;
+  border-radius: 5px;
+  width: 300px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #ff6600;
+  color: #eee;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #ff9933;
+}
+</style>
+</head>
+<body>
+
+  <h1>Enter URL:</h1>
+  <input type="text" id="targetUrl" placeholder="Enter URL or search term">
+  <button onclick="proxy()">Go</button>
+
+  <script>
+    function proxy() {
+      const inputUrl = document.getElementById('targetUrl').value;
+      const currentDomain = window.location.origin;
+      let finalUrl;
+
+      if (inputUrl.startsWith("http://") || inputUrl.startsWith("https://")) {
+        finalUrl = `${currentDomain}/?test=${encodeURIComponent(inputUrl)}`;
+      } else {
+        const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(inputUrl)}`;
+        finalUrl = `${currentDomain}/?test=${encodeURIComponent(googleSearchUrl)}`;
+      }
+
+      const newWindow = window.open('', '_blank', 'width=800,height=600');
+
+      if (newWindow) {
+        newWindow.location.href = finalUrl;
+
+        newWindow.onload = function() {
+          fetch('background.html')
+            .then(response => response.text())
+            .then(backgroundHTML => {
+              newWindow.document.open();
+              newWindow.document.write(backgroundHTML);
+              newWindow.document.close();
+            })
+            .catch(error => console.error("Error loading background:", error));
+        };
+      } else {
+        alert('Popup blocked! Please allow popups for this site.');
+      }
+    }
+  </script>
+
+</body>
+</html>

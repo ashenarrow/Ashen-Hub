@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Gaming Hub</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #ff6600;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+        }
+
+        .fiery-button {
+            background-color: #ff6600;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+        }
+
+        .fiery-button:hover {
+            background-color: #cc3300;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .fiery-button:active {
+            background-color: #aa2200;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        #background-iframe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            border: none;
+            pointer-events: none;
+        }
+
+        .burst {
+            animation: burstAnimation 0.5s ease;
+        }
+
+        @keyframes burstAnimation {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <iframe id="background-iframe" src="background.html"></iframe>
+    <a href="index.html" class="home-button">Home</a>
+    <div class="container">
+        <div id="buttons-container"></div>
+    </div>
+
+    <script>
+        function launchGame(game, buttonElement) {
+            const currentDomain = window.location.origin;
+            const gameUrlWithParam = `${currentDomain}?test=${encodeURIComponent(game.url)}`;
+
+            if (buttonElement) {
+                buttonElement.classList.add('burst');
+                setTimeout(() => {
+                    buttonElement.classList.remove('burst');
+                    window.open(gameUrlWithParam, "_blank", "width=" + screen.width + ",height=" + screen.height + ",fullscreen=yes");
+                }, 500);
+            } else {
+                window.open(gameUrlWithParam, "_blank", "width=" + screen.width + ",height=" + screen.height + ",fullscreen=yes");
+            }
+        }
+
+        fetch('cloudgaming-list.json')
+            .then(response => response.json())
+            .then(data => {
+                const buttonsContainer = document.getElementById('buttons-container');
+
+                data.forEach(game => {
+                    const button = document.createElement('button');
+                    button.classList.add('fiery-button');
+                    button.textContent = game.name;
+                    button.addEventListener('click', () => {
+                        launchGame(game, button);
+                    });
+                    buttonsContainer.appendChild(button);
+                });
+            })
+            .catch(error => console.error('Error fetching JSON:', error));
+    </script>
+</body>
+</html>

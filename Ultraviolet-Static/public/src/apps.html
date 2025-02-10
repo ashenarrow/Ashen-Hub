@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apps</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            color: #ffcc00;
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #background-iframe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            z-index: -1;
+        }
+
+        h1 {
+            color: #ff3300;
+            text-shadow: 2px 2px 4px #000000;
+            margin-bottom: 20px;
+        }
+
+        .app-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            width: 80%;
+            max-width: 900px;
+        }
+
+        .app-item {
+            background-color: rgba(255, 51, 0, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .app-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        .app-name {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .app-link {
+            color: #ffff99;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.3);
+            transition: background-color 0.2s ease;
+        }
+
+        .app-link:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 0.3s ease;
+        }
+
+        #loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #loading-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            filter: blur(5px);
+            opacity: 0.5;
+        }
+
+        #loading-content {
+            background-color: rgba(0, 0, 0, 1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            z-index: 1;
+        }
+
+        #loading-progress {
+            width: 0%;
+            height: 20px;
+            background-color: #4CAF50;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        #loading-game-description {
+            display: none; /* Hide the description */
+        }
+    </style>
+</head>
+<body>
+    <iframe id="background-iframe" src="background.html"></iframe>
+    <h1>Apps</h1>
+    <div class="app-list" id="app-container"></div>
+
+    <div id="loading-screen" class="hidden">
+        <div id="loading-bg"></div>
+        <div id="loading-content">
+            <h2 id="loading-game-title">Loading...</h2>
+            <div id="loading-progress"></div>
+        </div>
+    </div>
+
+    <script>
+        fetch('apps.json')
+            .then(response => response.json())
+            .then(apps => {
+                const appContainer = document.getElementById('app-container');
+                const loadingScreen = document.getElementById("loading-screen");
+                const loadingBg = document.getElementById("loading-bg");
+                const loadingGameTitle = document.getElementById("loading-game-title");
+                const progressBar = document.getElementById("loading-progress");
+
+                apps.forEach(app => {
+                    const appItem = document.createElement('div');
+                    appItem.classList.add('app-item');
+
+                    const appName = document.createElement('div');
+                    appName.classList.add('app-name');
+                    appName.textContent = app.name;
+
+                    const appLink = document.createElement('a');
+                    appLink.classList.add('app-link');
+                    appLink.href = "#";
+                    appLink.textContent = 'Launch';
+
+                    appLink.addEventListener('click', (event) => {
+                        event.preventDefault();
+
+                        if (app.logo) {
+                            loadingBg.style.backgroundImage = `url(${app.logo})`;
+                        } else {
+                            loadingBg.style.backgroundImage = "none";
+                        }
+
+                        loadingGameTitle.textContent = app.name || "Game Loading...";
+                        progressBar.style.width = "0%";
+                        loadingScreen.classList.remove("hidden");
+
+                        const totalTime = 4000;
+                        const intervalTime = 50;
+                        let elapsed = 0;
+
+                        const interval = setInterval(() => {
+                            elapsed += intervalTime;
+                            let progress = Math.min((elapsed / totalTime) * 100, 100);
+                            progressBar.style.width = progress + "%";
+
+                            if (elapsed >= totalTime) {
+                                clearInterval(interval);
+                                loadingScreen.classList.add("hidden");
+
+                                const currentDomain = window.location.origin;
+                                const gameUrlWithParam = `${currentDomain}?test=${encodeURIComponent(app.url)}`;
+                                const newWindow = window.open(gameUrlWithParam, "_blank", "width=" + screen.width + ",height=" + screen.height);
+
+                                if (newWindow) {
+                                    newWindow.moveTo(0, 0);
+                                    newWindow.resizeTo(screen.width, screen.height);
+                                } else {
+                                    alert("Popup blocker detected. Please allow popups for this site.");
+                                }
+                            }
+                        }, intervalTime);
+                    });
+
+                    appItem.appendChild(appName);
+                    appItem.appendChild(appLink);
+                    appContainer.appendChild(appItem);
+                });
+            })
+            .catch(error => console.error('Error fetching apps:', error));
+    </script>
+</body>
+</html>

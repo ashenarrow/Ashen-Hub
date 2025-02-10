@@ -1,0 +1,435 @@
+[
+  {
+    "name": "Block Blast",
+    "logo": "assets/games/blockblast.jpg",
+    "url": "https://reunbozdo.github.io/",
+    "tags": ["puzzle", "strategy"],
+    "videoUrl": "https://www.youtube.com/embed/d6Kvn90NSUo?&rel=0",
+    "description": "The Block Blast Game is a popular puzzle game designed for players of all ages. The objective is straightforward: players must strategically arrange and eliminate blocks on a grid by matching colors or shapes."
+  },
+  {
+    "name": "Borderlands 2 (GameNow)",
+    "logo": "assets/games/borderlands.png",
+    "url": "https://trialplay.gamenow.gg/gamenow_trial/?game=Borderlands2GOTY.2k.pc.2013&channel=gamenow_gg",
+    "tags": ["FPS", "action"],
+    "videoUrl": "https://www.youtube.com/embed/9PlLwA_uVCw",
+    "description": "Borderlands 2 follows the story of four new Vault Hunters as they fight to free Pandora from the clutches of Handsome Jack, the brilliant, charismatic, and utterly despicable CEO of the Hyperion Corporation."
+  },
+  {
+    "name": "A Plague Tale: Innocense (GameNow)",
+    "logo": "assets/games/a-plague-tale.png",
+    "url": "https://trialplay.gamenow.gg/gamenow_trial/?game=APlagueTale.FocusHomeInteractive.pc.2019&channel=gamenow_gg",
+    "tags": ["adventure", "action"],
+    "videoUrl": "https://www.youtube.com/embed/gjIb9dQgUF0",
+    "description": "Follow the grim tale of young Amicia and her little brother Hugo, in a heartrending journey through the darkest hours of history. Hunted by Inquisition soldiers and surrounded by unstoppable swarms of rats, Amicia and Hugo will come to know and trust each other."
+  },
+  {
+    "name": "Metro: 2033 Redux (GameNow)",
+    "logo": "assets/games/metro.png",
+    "url": "https://trialplay.gamenow.gg/gamenow_trial/?game=Metro2033Redux.DeepSilver.pc.2014&channel=gamenow_gg",
+    "tags": ["FPS", "action"],
+    "videoUrl": "https://www.youtube.com/embed/rUOCBCTRNl0",
+    "description": "A handful of survivors took refuge in the depths of the Moscow underground... The year is 2033. You are Artyom, born in the last days before the fire, but raised Underground. One fateful event sparks a desperate mission to the heart of the Metro system, to warn the remnants of mankind of a terrible impending threat."
+  },
+  {
+    "name": "Hole.io",
+    "logo": "assets/games/hole-io.png",
+    "url": "https://hole-io.com/",
+    "tags": ["parkour"]
+  },
+  {
+    "name": "Slope",
+    "logo": "assets/games/slope.jpg",
+    "url": "https://slopeio.org/slope.embed",
+    "tags": ["parkour"]
+  },
+  {
+    "name": "Subway Surfers",
+    "logo": "assets/games/subway-surfers.png",
+    "url": "https://szhong.4399.com/4399swf//upload_swf/ftp35/liuxinyu/20210324/jj01/index.html",
+    "tags": ["parkour"]
+  },
+  {
+    "name": "Temple Run 2",
+    "logo": "assets/games/temple-run.png",
+    "url": "https://y2k04.github.io/templerun2/",
+    "tags": ["parkour"]
+  },
+  {
+    "name": "Roblox (Now.gg)",
+    "logo": "assets/games/roblox.jpg",
+    "url": "https://mathsspot.com/?app_pkg=com.roblox.client&partner=gamenora",
+    "tags": ["action", "adventure", "parkour"]
+  },
+  {
+    "name": "EV.io",
+    "logo": "assets/games/ev.io.jpeg",
+    "url": "https://ev.io",
+    "tags": ["FPS", "action"]
+  },
+  {
+    "name": "Krunker.io",
+    "logo": "assets/games/krunker.jpg",
+    "url": "https://krunker.io",
+    "tags": ["FPS", "action"]
+  },
+  {
+    "name": "Bloxd.io",
+    "logo": "assets/games/bloxd-io.jpg",
+    "url": "https://bloxd.io",
+    "tags": ["FPS", "action", "adventure", "parkour"]
+  },
+  {
+    "name": "Shell Shockers",
+    "logo": "assets/games/shell-shockers.jpg",
+    "url": "https://shellshock.io/",
+    "tags": ["FPS", "action"]
+  },
+  {
+    "name": "Mostly Only Up",
+    "logo": "assets/games/mostly-only-up.jpg",
+    "url": "https://www.spatial.io/embed/Mostly-Only-Up-64f8d2297af3f1ab8a72737d?share=5254322731821968762&embedSource=hahagames",
+    "tags": ["adventure", "parkour"],
+    "description": "Mostly Only Up is a 3D platforming game about climbing an assortment of structures up toward the sky using the keyboard."
+  },
+  {
+    "name": "Narrow One",
+    "logo": "assets/games/narrow-one.png",
+    "url": "https://narrow.one",
+    "tags": ["FPS", "action"],
+    "description": "Steal the flag with the help of your teammates and win the battle. Narrow One is a multiplayer medieval-style bow and arrow shooter, 5v5. Explore the different maps and find the hidden shortcuts."
+  },
+  {
+    "name": "Taming.io",
+    "logo": "assets/games/taming-io.png",
+    "url": "https://taming.io/",
+    "tags": ["adventure", "action"]
+  },
+  {
+    "name": "1v1.lol",
+    "logo": "assets/games/1v1.lol.png",
+    "url": "https://1v1.lol",
+    "tags": ["FPS", "action"]
+  },
+  {
+    "name": "ARK: Survival Evolved (Easyfun.gg)",
+    "logo": "assets/games/ark.jpg",
+    "url": "https://www.easyfun.gg/cloud-games/ark-survival-evolved-cloud-online.html?utm_source=youtube_kol&utm_medium=macrolo&utm_id=8000001?start=1",
+    "tags": ["adventure", "action"],
+    "description": "Ark: Survival Evolved is an open-world survival game where players are stranded on an island and must learn to survive. Players can hunt, harvest resources, craft items, grow crops, and build shelters. They can also tame, train, and breed dinosaurs and other creatures. "
+  },
+  {
+    "name": "Tanuki Sunset",
+    "logo": "assets/games/tanuki-sunset.png",
+    "url": "https://ashentanuki.vercel.app",
+    "tags": ["adventure", "parkour"],
+    "description": "Tanuki Sunset is an action-adventure game where you play as Tanuki, a longboarding raccoon on Sunset Island. The game features a retro art style, chill music, and simple controls. "
+  },
+  {
+    "name": "Among Us",
+    "logo": "assets/games/amoungus.jpg",
+    "url": "https://ashenamoung.vercel.app",
+    "tags": ["strategy", "action"],
+    "videoUrl": "https://www.youtube.com/embed/0YKjFoGxbec",
+    "description": "Among Us is a free space-themed online game where up to 15 players play together and are assigned the roles of 'Crewmate' or 'Imposter'. The aim of the game is for the crewmates to identify the players who are the imposters before the imposters can secretly sabotage their tasks and individually kill the crewmates."
+  },
+  {
+    "name": "Terraria",
+    "logo": "assets/games/terraria.jpg",
+    "url": "https://ashenterr.vercel.app",
+    "tags": ["adventure", "action"],
+    "videoUrl": "https://www.youtube.com/embed/w7uOhFTrrq0",
+    "description": "Terraria is a 2D action-adventure sandbox game that involves exploration, crafting, building, mining, and combat. It's known for its classic gameplay style, similar to Minecraft and the Metroid series."
+  },
+  {
+    "name": "Dancing Dreamer",
+    "logo": "assets/games/dancingdreamer.png",
+    "url": "https://games.crazygames.com/en_US/dancing-dreamer/index.html",
+    "tags": ["parkour"],
+    "videoUrl": "https://www.youtube.com/embed/OVnjTYgDktE",
+    "description": "Dancing Dreamer is a casual music game where individuals immerse themselves in virtual training to realize their aspirations. Join Bruno on his quest to become a dancer, mastering moves with intuitive controls like sliding to surf and tapping to jump."
+  },
+  {
+    "name": "Diep.io",
+    "logo": "assets/games/diep.png",
+    "url": "https://diep.io",
+    "tags": ["parkour"]
+  },
+  {
+    "name": "Skribbl.io",
+    "logo": "assets/games/skrib.jpg",
+    "url": "https://skribbl.io/",
+    "tags": ["parkour"]
+  },
+  {
+    "name": "Struckd",
+    "logo": "assets/games/struckd.png",
+    "url": "https://d2e3lku8rudis3.cloudfront.net/release/index.html",
+    "tags": ["action", "adventure", "FPS", "parkour", "puzzle", "strategy"],
+    "videoUrl": "https://www.youtube.com/embed/ry2t5ZFqjrY",
+    "description": "Create, Share & Play Games! Build your own game and play thousands of others! Mobile & desktop."
+  },
+  {
+    "name": "Paper.io 2",
+    "url": "https://paper-io.com/",
+    "tags": ["action"],
+    "logo": "assets/games/paper.io2.jpg"
+  },
+  {
+    "name": "Wings.io",
+    "url": "https://wings.io/",
+    "tags": ["action"],
+    "logo": "assets/games/wings.io.jpg"
+  },
+  {
+    "name": "Gartic.io",
+    "url": "https://gartic.io/",
+    "tags": ["strategy"],
+    "logo": "assets/games/gartic.png"
+  },
+  {
+    "name": "Curve Fever Pro",
+    "url": "https://curvefeverpro.com/",
+    "tags": ["strategy"],
+    "logo": "assets/games/curvefeverpro.jpg"
+  },
+  {
+    "name": "Surviv.io",
+    "url": "https://surviv.io/",
+    "tags": ["action"],
+    "logo": "assets/games/survival.io.png"
+  },
+  {
+    "name": "Repuls.io",
+    "url": "https://repuls.io",
+    "tags": ["FPS"],
+    "logo": "assets/games/repuls-io.png"
+  },
+  {
+    "name": "Agar.io",
+    "url": "https://agar.io/",
+    "tags": ["action"],
+    "logo": "assets/games/agar.io.png"
+  },
+  {
+    "name": "Slither.io",
+    "url": "https://slither.io/",
+    "tags": [],
+    "logo": "assets/games/slither.io.png"
+  },
+  {
+    "name": "Flappy Bird",
+    "url": "https://slopeio.org/flappy-bird.embed",
+    "tags": ["parkour"],
+    "logo": "https://techcrunch.com/wp-content/uploads/2014/02/flappy.jpeg"
+  },
+  {
+    "name": "LOL Beans",
+    "url": "https://slopeio.org/stumble-guys.embed",
+    "tags": ["parkour"],
+    "logo": "https://www1.minijuegosgratis.com/v3/games/thumbnails/235793_7_sq.jpg"
+  },
+  {
+    "name": "Roblox (easyfun.gg)",
+    "logo": "assets/games/roblox.jpg",
+    "url": "https://www.easyfun.gg/cloud-games/roblox.html?start=1",
+    "tags": ["action", "adventure", "parkour"]
+  },
+  {
+    "name": "Superhot",
+    "logo": "assets/games/superhot.png",
+    "url": "https://www.easyfun.gg/cloud-games/roblox.html?start=1",
+    "tags": ["action", "adventure", "FPS"],
+    "description": "In Superhot, time moves slower when the player does not move. The game moves faster when they look around, move or shoot, giving them situational awareness to respond to enemy actions, such as altering their course to avoid the path of oncoming bullets."
+  },
+  {
+    "name": "Smashkarts",
+    "logo": "assets/games/smashkarts.png",
+    "url": "https://htmlxm.github.io/h/smash-karts",
+    "tags": ["action"],
+    "description": "Smash Karts is a 3D multiplayer IO kart battle game. Drive your go-kart, pick up weapons, and blow up other karts to win! Keep playing to level up and unlock new characters and prizes."
+  },
+  {
+    "name": "Masked Forces",
+    "logo": "assets/games/masked-forces.jpg",
+    "url": "https://htmlxm.github.io/h8/masked-forces/",
+    "tags": ["action", "FPS"],
+    "description": "Masked Forces Zombie Survival is a cool game designed to put you face to face with all the challenges and horrors that zombies can bring in an alternative future. In this game, your primary concern is to get the best weapons and kill the enemies that come in waves."
+  },
+  {
+    "name": "Nazi Zombies",
+    "logo": "assets/games/nazizombies.png",
+    "url": "https://nzp.gay/",
+    "tags": ["action", "FPS"],
+    "description": "Nazi Zombies: Portable is a remake of Call of Duty: World at War with similar features and gameplay"
+  },
+  {
+    "name": "Moto X3m Spooky Land",
+    "logo": "assets/games/moto.png",
+    "url": "https://htmlxm.github.io/h/moto-x3m-spooky-land",
+    "tags": ["parkour", "racing"],
+    "description": "Moto X3M 6: Spooky Land is a driving game, the spooky sixth installment of Moto X3M. Drive your motorbike through Halloween-themed tracks filled with obstacles and stunt opportunities. Get your bike through the trials quickly to earn more points!"
+  },
+  {
+    "name": "Moto X3m",
+    "logo": "assets/games/moto1.png",
+    "url": "https://htmlxm.github.io/h8/moto-x3m/",
+    "tags": ["parkour", "racing"],
+    "description": "Moto X3M combines fast pace flying by the seat of your pants arcade levels, with whacky fantastic contraptions such as the tank that can provide interesting puzzles. While most levels are easy, it can be very hard to master the level and beat the top time."
+  },
+  {
+    "name": "Moto X3m Winter",
+    "logo": "assets/games/motowinter.png",
+    "url": "https://htmlxm.github.io/h/moto-x3m-winter",
+    "tags": ["parkour", "racing"],
+    "description": "This exhilarating bike-racing game will take you on a wild ride through challenging winter landscapes, complete with icy jumps, dangerous obstacles, and thrilling stunts"
+  },
+  {
+    "name": "Moto X3m Pool Party",
+    "logo": "assets/games/motopool.png",
+    "url": "https://htmlxm.github.io/h/moto-x3m-pool-party/",
+    "tags": ["parkour", "racing"],
+    "description": "The theme of this title is a pool party as you'll be bike racing across, and even through, plenty of water. You encounter everything from the sunshine and waterslides to giant tubes and umbrellas. The beach setting is fantastic, and the new levels really are fun to play. There are 22 levels in total."
+  },
+  {
+    "name": "Moto Road Dash 3D",
+    "logo": "assets/games/motoroadrash.jpg",
+    "url": "https://htmlxm.github.io/h7/moto-road-rash-3d",
+    "tags": ["racing", "sports"],
+    "description": "This game focuses entirely on your motorcycle in a world where there don't seem to be any other motorcycles on the road. This helps you focus more on what you're doing and makes it so that you don't have to worry about other bikers weaving around and making reckless driving maneuvers like you."
+  },
+  {
+    "name": "Bike Trials Winter 2",
+    "logo": "assets/games/bike-trials-winter-2.png",
+    "url": "https://htmlxm.github.io/h2/bike-trials-winter-2/",
+    "tags": ["parkour", "racing", "sports"],
+    "description": "Prepare for an exciting winter motocross adventure in Bike Trials Winter 2. Developed by the skilled team at MotoRiders, this game promises a thrilling and challenging gaming experience that will put your riding skills to the test in a snowy wonderland."
+  },
+  {
+    "name": "Top Speed Racing 3D",
+    "logo": "assets/games/topspeed.jpg",
+    "url": "https://htmlxm.github.io/h/top-speed-racing-3d/",
+    "tags": ["racing", "sports"]
+  },
+  {
+    "name": "Run 3",
+    "logo": "assets/games/run3.jpg",
+    "url": "https://htmlxm.github.io/h9/run-3-editor/",
+    "tags": ["parkour"],
+    "description": "Run 3 is an endless runner game where you play as a character exploring tunnels in space, avoiding obstacles, and collecting power cells. The game features gravity-defying gameplay, multiple playable characters, and a storyline involving stolen planets."
+  },
+  {
+    "name": "Stack",
+    "logo": "assets/games/stack.png",
+    "url": "https://htmlxm.github.io/h2/stack",
+    "tags": ["parkour"],
+    "description": "The Stack is a very addictive hyper-casual game. In this game, you have to stack up a pile of blocks by as simple as Tapping. Build the tower as tall as you can to get a high score."
+  },
+  {
+    "name": "Retro Bowl",
+    "logo": "assets/games/retro.png",
+    "url": "https://htmlxm.github.io/h/retro-bowl/",
+    "tags": ["sports"]
+  },
+  {
+    "name": "Duck Life 4",
+    "logo": "assets/games/ducklife.jpg",
+    "url": "https://htmlxm.github.io/h/duck-life-4/",
+    "tags": ["adventure"]
+  },
+  {
+    "name": "Bullet Force",
+    "logo": "assets/games/bulletforce.png",
+    "url": "https://htmlxm.github.io/h7/bullet-force/",
+    "tags": ["FPS", "action"]
+  },
+  {
+    "name": "Raft Wars 2",
+    "logo": "assets/games/raftedwars2.png",
+    "url": "https://htmlxm.github.io/h6/raft-wars-2/",
+    "tags": ["action"],
+    "description": "In Raft Wars 2 Simon and his brother return from a well-deserved holiday only to find a water park on top of where they've hidden their buried treasure. Now they're on a mission to put the water park out of business so they can get back their gold!"
+  },
+  {
+    "name": "Maze Planet 3D",
+    "logo": "assets/games/Maze-Planet.jpg",
+    "url": "https://htmlxm.github.io/h7/maze-planet-3d/",
+    "tags": ["puzzle"],
+    "description": "Maze Planet 3D is a fun and exciting puzzle game in which as the title suggests, you must try and guide a ball through a series of complicated 3D mazes."
+  },
+  {
+    "name": "Big FLAPPY Tower Tiny Square",
+    "logo": "assets/games/flappylogo.jpg",
+    "url": "https://big-flappy-tower-vs-tiny-square.game-files.crazygames.com/big-flappy-tower-vs-tiny-square/1/index.html?aaConfigcatTest=false",
+    "tags": ["adventure", "parkour"],
+    "description": "Fling, flip, and FLAP your way over pipes and pits on your way to rescue your Pineapple in the 4th instalment of the Big Tower Tiny Square series! Having cloned himself and Pineapple, Big Square is back in an all new tower - can you reach the top of the tower to save Pineapple and get revenge on Big Square."
+  },
+  {
+    "name": "Vex 7",
+    "logo": "assets/games/vex7.png",
+    "url": "https://htmlxm.github.io/h9/vex-7/",
+    "tags": ["adventure", "parkour"]
+  },
+  {
+    "name": "Dinosaur Game",
+    "logo": "assets/games/dinosaur.png",
+    "url": "https://htmlxm.github.io/h7/dinosaur-game",
+    "tags": ["parkour"],
+    "description": "The Dinosaur Game (also known as the Chrome Dino) is a browser game developed by Google and built into the Google Chrome web browser. The player guides a pixelated t-rex across a side-scrolling landscape, avoiding obstacles to achieve a higher score."
+  },
+  {
+    "name": "Impossible Tic Tac Toe",
+    "logo": "assets/games/tictak.png",
+    "url": "https://htmlxm.github.io/h7/impossible-tic-tac-toe",
+    "tags": ["puzzle"],
+    "description": "Impossible."
+  },
+  {
+    "name": "Squid Game Online",
+    "logo": "assets/games/squidgame.png",
+    "url": "https://www.crazygames.com/embed/squid-game-online",
+    "tags": ["puzzle", "action"],
+    "description": "Squid Game Online is a free multiplayer survival game. Compete in 7 minigames with 30 players based on the viral Netflix show Squid Game. If you fail any of the challenges, you will be eliminated by the Pink Soldiers."
+  },
+  {
+    "name": "Fortzone Battle Royal",
+    "logo": "assets/games/Fortzone-Battle-Royale.jpg",
+    "url": "https://games.builds.gamepix.com/A001EZ/2sXkYbNWARIlUcokS7eMbSUNXQ8/index.html?sid=e4515&lang=en&namespace=fortzone-battle-royale",
+    "tags": ["adventure", "action"],
+    "description": "Fortzone Battle Royale brings the thrilling chaos of a classic battle royale to life, thrusting players into a vast and beautifully designed map filled with lush forests and winding rivers."
+  },
+  {
+    "name": "Five Nights at Freddy's 4",
+    "logo": "assets/games/fnaf4.png",
+    "url": "https://fnafgame.io/fnaf-4.embed",
+    "tags": ["horror", "action"],
+    "description": "Five Nights at Freddy's 4 (FNaF 4) is a 2015 point-and-click survival horror video game made and published by Scott Cawthon. It is the fourth installment of the Five Nights at Freddy's series. The game takes place in the bedroom of a child, where the player must avoid attack by nightmarish animatronics that stalk them."
+  },
+  {
+    "name": "Granny 2 Original",
+    "logo": "assets/games/granny2.png",
+    "url": "https://playhop.com/app/307198?utm_source=distrib&is-united-page=1&skip-guard=1&header=no&utm_medium=hahagames.com&clid=4865623&flags={%22adv_sticky_banner_disabled%22:true}",
+    "tags": ["horror"],
+    "description": "Granny and Grandpa keeps you locked in his house this time. To survive You have to try to get out of his house, but be careful and quiet. Granny hears everything as usual. Grandpa doesn't hear very well but he hits hard."
+  },
+  {
+    "name": "Granny Original",
+    "logo": "assets/games/granny.png",
+    "url": "https://static.hahagames.com/game/2024/05/19/2a91d793-3dd8-4e6b-be53-8b495102a8e1/",
+    "tags": ["horror"],
+    "description": "Granny is an Indie horror game developed and published by DVloper, as part of the Slenderina series. The game features an unnamed protagonist trapped in a house, needing to solve puzzles while avoiding a Granny to get out of the house in a time period of only five days."
+  },
+  {
+    "name": "Poppy Playtime",
+    "logo": "assets/games/poppy.jpg",
+    "url": "https://html5.gamemonetize.co/x9l06dxlxrb93pkxmugq1bangqu1ur4y/",
+    "tags": ["horror"]
+  },
+  {
+    "name": "Bodycam Shooter",
+    "logo": "assets/games/bodycam.png",
+    "url": "https://www.crazygames.com/embed/bodycamera-shooter",
+    "tags": ["FPS", "action"],
+    "description": "BodyCamera Shooter is an FPS shooting game where you see everything from a body camera fixed on your fighter, taking you through a pretty realistic experience through abandoned buildings and rubble, aiming to kill or be killed."
+  }
+]

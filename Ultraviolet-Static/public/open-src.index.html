@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test</title>
+</head>
+<body>
+    <iframe ... data-default-page="games.html"></iframe>
+
+    <script>
+        "use strict";
+
+        function loadInitialURL() {
+            const frame = document.getElementById("uv-frame");
+            frame.style.display = "block";
+
+            const defaultPage = frame.dataset.defaultPage;
+            const urlParam = new URLSearchParams(window.location.search).get("url") || new URLSearchParams(window.location.search).get("test");
+
+            if (urlParam) {
+                frame.src = urlParam; // Load URL from parameter
+            } else {
+                frame.src = defaultPage; // Load default HTML file
+            }
+        }
+
+        loadInitialURL();
+
+        // Optional: Form Submission (if needed for external URLs)
+        const form = document.getElementById("uv-form"); // Add the id "uv-form" to your form
+        if (form) {
+            form.addEventListener("submit", (event) => {
+                event.preventDefault();
+                const address = document.getElementById("uv-address"); // Add the id "uv-address" to your input field
+                const enteredURL = address.value;
+                frame.src = enteredURL;
+                window.history.pushState({}, "", "?url=" + enteredURL);
+            });
+        }
+
+    </script>
+</body>
+</html>

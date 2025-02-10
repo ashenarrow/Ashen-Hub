@@ -1,0 +1,14 @@
+[
+    { "name": "DuckDuckGo (browser)", "url": "https://duckduckgo.com/" },
+    { "name": "StartPage (browser)", "url": "https://www.startpage.com" },
+    { "name": "Discord", "url": "https://discord.com/" },
+    { "name": "Spotify", "url": "https://www.spotify.com/" },
+    { "name": "YouTube", "url": "https://www.youtube.com" },
+    { "name": "Crazy Games", "url": "https://www.crazygames.com/" },
+    { "name": "Cool Math Games", "url": "https://www.coolmathgames.com/" },
+    { "name": "Y8 Games", "url": "https://www.y8.com/" },
+    { "name": "Easyfun", "url": "https://easyfun.gg" },
+    { "name": "Now.gg", "url": "https://nowgg.lol/hub" },
+    { "name": "TicTok", "url": "https://www.tiktok.com/" }
+    
+  ]

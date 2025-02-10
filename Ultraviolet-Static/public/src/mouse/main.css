@@ -1,0 +1,9 @@
+html,
+body,
+canvas {
+  margin: 0;
+}
+
+canvas {
+  background: black;
+}

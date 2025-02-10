@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Library</title>
+  <style>
+    /* Reset & Box Sizing */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    /* Base styles */
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: #fff;
+      background-color: #1a1a1a;
+      overflow-x: hidden;
+      height: 100vh;
+      position: relative;
+      padding-top: 70px; /* Space for fixed navbar */
+    }
+    /* Background Container */
+    #background-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    /* Navbar */
+    #navbar {
+      background-color: #222;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 10;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.7);
+    }
+    /* Group navbar buttons on the left */
+    #nav-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    #navbar button, #navbar input {
+      background-color: #444;
+      color: #fff;
+      padding: 12px;
+      border-radius: 5px;
+      font-size: 18px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      border: none;
+    }
+    #navbar button:hover, #navbar input:focus {
+      background-color: #555;
+      transform: scale(1.05);
+    }
+    /* Search bar on the right */
+    #search-bar {
+      width: 250px;
+    }
+    /* Main container (with hidden native scrollbar) */
+    #container {
+      margin-top: 90px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      height: 100%;
+      overflow: auto;
+    }
+    /* Hide native scrollbar for #container */
+    #container::-webkit-scrollbar {
+      display: none;
+    }
+    #container {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    /* Recommended Games Carousel Section */
+    #recommended-section {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    #recommended-section h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    #recommended-carousel-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+    #recommended-carousel {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    .carousel-item {
+      min-width: 100%;
+      box-sizing: border-box;
+      padding: 10px;
+    }
+    /* Recommended carousel items appear larger and more rectangular */
+    .carousel-item .game-item {
+      width: 100%;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #333;
+      border-radius: 10px;
+      padding: 10px;
+      cursor: pointer;
+    }
+    .carousel-item .game-item img {
+      max-height: 200px;
+      width: auto;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+    .carousel-item .game-item h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .carousel-item .game-item button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      border: none;
+      color: #fff;
+      font-size: 24px;
+      padding: 10px;
+      cursor: pointer;
+      display: none;
+    }
+    #recommended-carousel-container:hover .carousel-arrow {
+      display: block;
+    }
+    #carousel-prev {
+      left: 10px;
+    }
+    #carousel-next {
+      right: 10px;
+    }
+    #carousel-dots {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .carousel-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background: #555;
+      border-radius: 50%;
+      margin: 0 5px;
+      cursor: pointer;
+    }
+    .carousel-dot.active {
+      background: #4CAF50;
+    }
+    /* Game List (below recommended section) */
+    #game-list {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      overflow: hidden;
+    }
+    .tag-group {
+      width: 100%;
+    }
+    .tag-group h3 {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #4CAF50;
+    }
+    .game-list-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      padding: 10px 0;
+      overflow: hidden;
+    }
+    .game-item {
+      width: 200px;
+      text-align: center;
+      background-color: #333;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      padding: 10px;
+    }
+    .game-item:hover {
+      transform: scale(1.05);
+      background-color: #444;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.8);
+    }
+    .game-item img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .game-item h4 {
+      font-size: 16px;
+      margin-top: 10px;
+      color: #fff;
+    }
+    .game-item button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      margin-top: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .game-item button:hover:not(:disabled) {
+      background-color: #45a049;
+      transform: scale(1.05);
+    }
+    .game-item button:disabled {
+      background-color: #888;
+      cursor: default;
+    }
+    .view-more-button {
+      background-color: #555;
+      color: white;
+      padding: 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      margin-top: 15px;
+    }
+    .view-more-button:hover {
+      background-color: #666;
+      transform: scale(1.05);
+    }
+    /* Library Screen */
+    #library-screen {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 20px;
+      width: 100%;
+    }
+    .library-game-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 450px;
+      background-color: #333;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+      transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .library-game-item:hover {
+      transform: scale(1.05);
+      background-color: #444;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    }
+    .library-game-item img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .library-game-item span {
+      font-size: 18px;
+      color: #fff;
+    }
+    .library-game-item button {
+      background-color: #f44336;
+      padding: 10px;
+      border-radius: 5px;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .library-game-item button:hover {
+      background-color: #e53935;
+    }
+    /* Grid View for Tag "View All" */
+    #view-all-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+    /* View All Screen with its own custom scrollbar */
+    #view-all-screen {
+      height: calc(100vh - 90px);
+      overflow-y: auto;
+      align-self: stretch;
+    }
+    /* Custom scrollbar for Webkit browsers */
+    #view-all-screen::-webkit-scrollbar {
+      width: 8px;
+    }
+    #view-all-screen::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.2);
+      border-radius: 4px;
+    }
+    #view-all-screen::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.5);
+      border-radius: 4px;
+    }
+    /* Custom scrollbar for Firefox */
+    #view-all-screen {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,0.5) rgba(0,0,0,0.2);
+    }
+    /* Newest Games Section */
+    #newest-games-section {
+      margin: 20px 0;
+    }
+    #newest-games-section h3 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      text-align: center;
+      color: #4CAF50;
+    }
+    #newest-games-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    /* Extra bottom space */
+    .bottom-space {
+      height: 50px;
+    }
+    /* Footer */
+    #footer {
+      width: 100%;
+      text-align: center;
+      color: #aaa;
+      font-size: 14px;
+      margin-top: 20px;
+      padding-bottom: 20px;
+    }
+    /* Hide elements initially */
+    .hidden {
+      display: none !important;
+    }
+    /* Burst effect for launch button */
+    .burst {
+      animation: burst-animation 0.5s ease-out forwards;
+    }
+    @keyframes burst-animation {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+    /* Game Details Overlay */
+    #game-details {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+    }
+    #game-details-content {
+      background: #222;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 90%;
+      max-height: 90%;
+      overflow-y: auto;
+      text-align: center;
+      position: relative;
+    }
+    #game-details-content img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+    #game-details-content h2 {
+      margin-bottom: 10px;
+    }
+    #game-details-content p {
+      margin-bottom: 15px;
+    }
+    #game-details-content a {
+      display: inline-block;
+      background: #4CAF50;
+      color: #fff;
+      padding: 10px 15px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    #game-details-content a:hover {
+      background: #45a049;
+    }
+    #close-details {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #f44336;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    /* Related Games in Details Overlay */
+    #related-games {
+      margin-top: 20px;
+      text-align: left;
+    }
+    #related-games h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    #related-games-container {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .related-game-item {
+      display: inline-block;
+      width: 100px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .related-game-item img {
+      width: 100%;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+    .related-game-item p {
+      font-size: 12px;
+      margin-top: 5px;
+    }
+    /* Loading Screen Overlay */
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 150;
+      overflow: hidden;
+    }
+    /* Pulsing Background for Loading */
+    #loading-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      animation: pulse 4s infinite;
+      z-index: -1;
+      filter: blur(5px);
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    #loading-content {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      color: #fff;
+      max-width: 80%;
+    }
+    #loading-content h2 {
+      margin-bottom: 10px;
+    }
+    #loading-content p {
+      margin-bottom: 15px;
+    }
+    #loading-bar-container {
+      width: 100%;
+      background: rgba(255,255,255,0.3);
+      height: 10px;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-top: 15px;
+    }
+    #loading-progress {
+      width: 0;
+      height: 100%;
+      background: #4CAF50;
+      transition: width 0.05s linear;
+    }
+    /* Style for game tags in details overlay */
+    .game-tag {
+      background-color: #555;
+      color: #fff;
+      padding: 5px 8px;
+      border-radius: 4px;
+      margin: 0 5px 5px 0;
+      display: inline-block;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Container -->
+  <div id="background-container">
+    <!-- Content of background.html will be loaded here -->
+  </div>
+  <!-- Navbar -->
+  <div id="navbar">
+    <div id="nav-buttons">
+      <button onclick="toggleLibrary()">Library</button>
+      <button onclick="toggleGetGames()">Get Games</button>
+    </div>
+    <input type="text" id="search-bar" placeholder="Search Games..." oninput="searchGames()">
+  </div>
+  <!-- Main Container -->
+  <div id="container">
+    <!-- Get Games Screen -->
+    <div id="get-games-screen">
+      <!-- Recommended Games Carousel Section -->
+      <div id="recommended-section">
+        <h2>Recommended Games</h2>
+        <div id="recommended-carousel-container">
+          <div id="recommended-carousel"></div>
+          <button id="carousel-prev" class="carousel-arrow">&lt;</button>
+          <button id="carousel-next" class="carousel-arrow">&gt;</button>
+          <div id="carousel-dots"></div>
+        </div>
+      </div>
+      <!-- Newest Games Section -->
+      <div id="newest-games-section">
+        <h3>Newest Games</h3>
+        <div id="newest-games-container"></div>
+      </div>
+      <!-- Game List (by tags) -->
+      <div id="game-list"></div>
+    </div>
+    <!-- Library Screen (separate tab; hidden by default) -->
+    <div id="library-screen" class="hidden">
+      <h2>Your Library</h2>
+      <div id="library-list"></div>
+    </div>
+    <!-- View All Screen -->
+    <div id="view-all-screen" class="hidden">
+      <div id="view-all-container"></div>
+    </div>
+    <!-- Extra bottom space -->
+    <div class="bottom-space"></div>
+    <!-- Footer -->
+    <footer id="footer">All Rights Reserved by Ashen Game Hub</footer>
+  </div>
+  <!-- Game Details Overlay (initially hidden) -->
+  <div id="game-details" class="hidden">
+    <div id="game-details-content">
+      <button id="close-details">Close</button>
+      <img id="game-details-logo" src="" alt="Game Logo">
+      <h2 id="game-details-name"></h2>
+      <p id="game-details-description"></p>
+      <!-- New: Display game tags -->
+      <div id="game-details-tags"></div>
+      <a id="game-details-trailer" href="" target="_blank" class="hidden">Watch Trailer</a>
+      <!-- Related Games Section -->
+      <div id="related-games">
+        <h3>Related Games</h3>
+        <div id="related-games-container"></div>
+      </div>
+    </div>
+  </div>
+  <!-- Loading Screen Overlay (initially hidden) -->
+  <div id="loading-screen" class="hidden">
+    <div id="loading-bg"></div>
+    <div id="loading-content">
+      <h2 id="loading-game-title"></h2>
+      <p id="loading-game-description"></p>
+      <div id="loading-bar-container">
+        <div id="loading-progress"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Arrays to keep track of installed and recently played games
+    let installedGames = JSON.parse(localStorage.getItem("installedGames") || "[]");
+    let recentlyPlayed = JSON.parse(localStorage.getItem("recentlyPlayed") || "[]");
+    let allGamesData = [];
+    let searchTimeout;
+    let currentCarouselIndex = 0;
+    let carouselInterval;
+
+    // Load animated background from background.html
+    function loadBackground() {
+      fetch('background.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('background-container').innerHTML = data;
+        })
+        .catch(error => console.error("Error loading background:", error));
+    }
+    loadBackground();
+
+    // Toggle functions
+    async function toggleGetGames() {
+      document.getElementById("get-games-screen").classList.remove("hidden");
+      document.getElementById("library-screen").classList.add("hidden");
+      document.getElementById("view-all-screen").classList.add("hidden");
+      renderRecommendedCarousel();
+      await renderGetGames();
+      await renderNewestGames();
+    }
+    function toggleLibrary() {
+      document.getElementById("library-screen").classList.remove("hidden");
+      document.getElementById("get-games-screen").classList.add("hidden");
+      document.getElementById("view-all-screen").classList.add("hidden");
+      renderLibrary();
+    }
+
+    // Fetch game data from game-list.json
+    async function fetchGamesData() {
+      const response = await fetch('game-list.json');
+      allGamesData = await response.json();
+      return allGamesData;
+    }
+
+    // Render Get Games Screen (Game List with tags)
+    async function renderGetGames() {
+      const gameListContainer = document.getElementById("game-list");
+      gameListContainer.innerHTML = "";
+      const gamesList = await fetchGamesData();
+      const tags = {};
+      gamesList.forEach(game => {
+        game.tags.forEach(tag => {
+          if (!tags[tag]) { tags[tag] = []; }
+          tags[tag].push(game);
+        });
+      });
+      for (let tag in tags) {
+        const tagGroup = document.createElement('div');
+        tagGroup.classList.add('tag-group');
+        const tagTitle = document.createElement('h3');
+        tagTitle.textContent = tag;
+        tagGroup.appendChild(tagTitle);
+        const gameListRow = document.createElement('div');
+        gameListRow.classList.add('game-list-row');
+        let gameCount = 0;
+        tags[tag].forEach(game => {
+          if (gameCount < 5) {
+            const gameItem = document.createElement('div');
+            gameItem.classList.add('game-item');
+            // Open game details on click.
+            gameItem.onclick = () => showGameDetails(game);
+            const gameLogo = document.createElement('img');
+            gameLogo.src = game.logo;
+            gameItem.appendChild(gameLogo);
+            const gameTitle = document.createElement('h4');
+            gameTitle.textContent = game.name;
+            gameItem.appendChild(gameTitle);
+            const installButton = document.createElement('button');
+            if (installedGames.includes(game.name)) {
+              installButton.textContent = "Installed";
+              installButton.disabled = true;
+            } else {
+              installButton.textContent = "Install";
+              installButton.onclick = (event) => {
+                event.stopPropagation();
+                installGame(game);
+              };
+            }
+            gameItem.appendChild(installButton);
+            gameListRow.appendChild(gameItem);
+            gameCount++;
+          }
+        });
+        tagGroup.appendChild(gameListRow);
+        const viewMoreButton = document.createElement('button');
+        viewMoreButton.classList.add('view-more-button');
+        viewMoreButton.textContent = 'View All';
+        viewMoreButton.onclick = () => viewMoreGames(tag, tags[tag]);
+        tagGroup.appendChild(viewMoreButton);
+        gameListContainer.appendChild(tagGroup);
+      }
+    }
+
+    // Render Newest Games Section (assumes newest games are at the bottom of the JSON)
+    async function renderNewestGames() {
+      if (allGamesData.length === 0) { await fetchGamesData(); }
+      const newestContainer = document.getElementById("newest-games-container");
+      newestContainer.innerHTML = "";
+      // Get the last 5 games from the JSON, reversing so the newest appears first
+      let newestGames = allGamesData.slice(-5).reverse();
+      newestGames.forEach(game => {
+        const gameItem = document.createElement('div');
+        gameItem.classList.add('game-item');
+        gameItem.onclick = () => showGameDetails(game);
+        const gameLogo = document.createElement('img');
+        gameLogo.src = game.logo;
+        gameItem.appendChild(gameLogo);
+        const gameTitle = document.createElement('h4');
+        gameTitle.textContent = game.name;
+        gameItem.appendChild(gameTitle);
+        const installButton = document.createElement('button');
+        if (installedGames.includes(game.name)) {
+          installButton.textContent = "Installed";
+          installButton.disabled = true;
+        } else {
+          installButton.textContent = "Install";
+          installButton.onclick = (event) => {
+            event.stopPropagation();
+            installGame(game);
+          };
+        }
+        gameItem.appendChild(installButton);
+        newestContainer.appendChild(gameItem);
+      });
+    }
+
+    // View All Screen: Show all games for a tag
+    function viewMoreGames(tag, games) {
+      document.getElementById("view-all-screen").classList.remove("hidden");
+      document.getElementById("get-games-screen").classList.add("hidden");
+      document.getElementById("library-screen").classList.add("hidden");
+      const viewAllContainer = document.getElementById("view-all-container");
+      viewAllContainer.innerHTML = "";
+      games.forEach(game => {
+        const gameItem = document.createElement('div');
+        gameItem.classList.add('game-item');
+        // Open game details on click.
+        gameItem.onclick = () => showGameDetails(game);
+        const gameLogo = document.createElement('img');
+        gameLogo.src = game.logo;
+        gameItem.appendChild(gameLogo);
+        const gameTitle = document.createElement('h4');
+        gameTitle.textContent = game.name;
+        gameItem.appendChild(gameTitle);
+        const installButton = document.createElement('button');
+        if (installedGames.includes(game.name)) {
+          installButton.textContent = "Installed";
+          installButton.disabled = true;
+        } else {
+          installButton.textContent = "Install";
+          installButton.onclick = (event) => {
+            event.stopPropagation();
+            installGame(game);
+          };
+        }
+        gameItem.appendChild(installButton);
+        viewAllContainer.appendChild(gameItem);
+      });
+    }
+
+    // Install game and update library
+    function installGame(game) {
+      if (!installedGames.includes(game.name)) {
+        installedGames.push(game.name);
+        localStorage.setItem("installedGames", JSON.stringify(installedGames));
+        alert(`Game ${game.name} installed!`);
+        renderLibrary();
+        renderGetGames();
+        renderRecommendedCarousel();
+      } else {
+        alert("Game already installed.");
+      }
+    }
+
+    // Render Library Screen with Recently Played and Installed sections
+    function renderLibrary() {
+      const libraryList = document.getElementById("library-list");
+      libraryList.innerHTML = "";
+      
+      // Recently Played Section
+      if (recentlyPlayed.length > 0) {
+        const recentSection = document.createElement('div');
+        const recentHeader = document.createElement('h3');
+        recentHeader.textContent = "Recently Played";
+        recentSection.appendChild(recentHeader);
+        recentlyPlayed.forEach(gameName => {
+          const game = allGamesData.find(g => g.name === gameName);
+          if (game) {
+            const gameItem = document.createElement('div');
+            gameItem.classList.add('library-game-item');
+            // Open game details on click.
+            gameItem.onclick = () => showGameDetails(game);
+            const gameLogo = document.createElement('img');
+            gameLogo.src = game.logo;
+            gameItem.appendChild(gameLogo);
+            const gameTitle = document.createElement('span');
+            gameTitle.textContent = game.name;
+            gameItem.appendChild(gameTitle);
+            const launchButton = document.createElement('button');
+            launchButton.textContent = 'Launch';
+            launchButton.onclick = (e) => {
+              e.stopPropagation();
+              launchGame(game, e.target);
+            };
+            gameItem.appendChild(launchButton);
+            recentSection.appendChild(gameItem);
+          }
+        });
+        libraryList.appendChild(recentSection);
+      }
+      
+      // Installed Games Section
+      const installedSection = document.createElement('div');
+      const installedHeader = document.createElement('h3');
+      installedHeader.textContent = "Installed Games";
+      installedSection.appendChild(installedHeader);
+      if (installedGames.length === 0) {
+        installedSection.innerHTML += "<p>No games installed.</p>";
+      } else {
+        installedGames.forEach(gameName => {
+          const game = allGamesData.find(g => g.name === gameName);
+          if (game) {
+            const gameItem = document.createElement('div');
+            gameItem.classList.add('library-game-item');
+            gameItem.onclick = () => showGameDetails(game);
+            const gameLogo = document.createElement('img');
+            gameLogo.src = game.logo;
+            gameItem.appendChild(gameLogo);
+            const gameTitle = document.createElement('span');
+            gameTitle.textContent = game.name;
+            gameItem.appendChild(gameTitle);
+            const launchButton = document.createElement('button');
+            launchButton.textContent = 'Launch';
+            launchButton.onclick = (e) => {
+              e.stopPropagation();
+              launchGame(game, e.target);
+            };
+            gameItem.appendChild(launchButton);
+            const removeButton = document.createElement('button');
+            removeButton.textContent = 'Remove';
+            removeButton.onclick = (event) => {
+              event.stopPropagation();
+              removeGame(game);
+            };
+            gameItem.appendChild(removeButton);
+            installedSection.appendChild(gameItem);
+          }
+        });
+      }
+      libraryList.appendChild(installedSection);
+    }
+
+    // Remove game from library
+    function removeGame(game) {
+      installedGames = installedGames.filter(installedGame => installedGame !== game.name);
+      localStorage.setItem("installedGames", JSON.stringify(installedGames));
+      renderLibrary();
+      renderGetGames();
+      renderRecommendedCarousel();
+    }
+
+    // Launch game with a 4-second loading screen (pulsing background and realistic progress bar)
+    function launchGame(game, buttonElement) {
+      // Add game to recently played list (avoid duplicates and keep most recent first)
+      recentlyPlayed = recentlyPlayed.filter(name => name !== game.name);
+      recentlyPlayed.unshift(game.name);
+      if (recentlyPlayed.length > 5) { recentlyPlayed.pop(); }
+      localStorage.setItem("recentlyPlayed", JSON.stringify(recentlyPlayed));
+      
+      const loadingScreen = document.getElementById("loading-screen");
+      const loadingBg = document.getElementById("loading-bg");
+      loadingBg.style.backgroundImage = `url(${game.logo})`;
+      document.getElementById("loading-game-title").textContent = game.name;
+      document.getElementById("loading-game-description").textContent = game.description || "No description available.";
+      const progressBar = document.getElementById("loading-progress");
+      progressBar.style.width = "0%";
+      loadingScreen.classList.remove("hidden");
+      const totalTime = 4000; // 4 seconds
+      const intervalTime = 50; // update every 50ms
+      let elapsed = 0;
+      const interval = setInterval(() => {
+        elapsed += intervalTime;
+        let progress = Math.min((elapsed / totalTime) * 100, 100);
+        progressBar.style.width = progress + "%";
+        if (elapsed >= totalTime) {
+          clearInterval(interval);
+          loadingScreen.classList.add("hidden");
+          const currentDomain = window.location.origin;
+          const gameUrlWithParam = `${currentDomain}?test=${encodeURIComponent(game.url)}`;
+          window.open(gameUrlWithParam, "_blank", "width=" + screen.width + ",height=" + screen.height + ",fullscreen=yes");
+        }
+      }, intervalTime);
+    }
+
+    // Compute related games based on matching tags (top 4)
+    function computeRelatedGames(selectedGame) {
+      let related = [];
+      allGamesData.forEach(game => {
+        if (game.name !== selectedGame.name) {
+          let score = 0;
+          selectedGame.tags.forEach(tag => {
+            if (game.tags && game.tags.includes(tag)) { score++; }
+          });
+          if (score > 0) {
+            related.push({ ...game, score });
+          }
+        }
+      });
+      related.sort((a, b) => b.score - a.score);
+      return related.slice(0, 4);
+    }
+
+    // Render related games in the details overlay
+    function renderRelatedGames(relatedGames) {
+      const container = document.getElementById("related-games-container");
+      container.innerHTML = "";
+      relatedGames.forEach(game => {
+        const gameDiv = document.createElement("div");
+        gameDiv.classList.add("related-game-item");
+        const img = document.createElement("img");
+        img.src = game.logo;
+        gameDiv.appendChild(img);
+        const title = document.createElement("p");
+        title.textContent = game.name;
+        gameDiv.appendChild(title);
+        gameDiv.onclick = () => showGameDetails(game);
+        container.appendChild(gameDiv);
+      });
+    }
+
+    // Show game details overlay with description, logo, trailer (if any), tags, and related games.
+    function showGameDetails(game) {
+      const detailsOverlay = document.getElementById('game-details');
+      document.getElementById('game-details-logo').src = game.logo;
+      document.getElementById('game-details-name').textContent = game.name;
+      document.getElementById('game-details-description').textContent = game.description || "No description available.";
+      
+      // Display game tags
+      const tagsContainer = document.getElementById('game-details-tags');
+      tagsContainer.innerHTML = "";
+      if (game.tags && game.tags.length > 0) {
+        game.tags.forEach(tag => {
+          const tagSpan = document.createElement('span');
+          tagSpan.classList.add('game-tag');
+          tagSpan.textContent = tag;
+          tagsContainer.appendChild(tagSpan);
+        });
+      }
+      
+      const trailerLink = document.getElementById('game-details-trailer');
+      if (game.videoUrl) {
+        trailerLink.href = game.videoUrl;
+        trailerLink.classList.remove('hidden');
+      } else {
+        trailerLink.classList.add('hidden');
+      }
+      const related = computeRelatedGames(game);
+      renderRelatedGames(related);
+      detailsOverlay.classList.remove('hidden');
+    }
+
+    // Close the game details overlay
+    function closeGameDetails() {
+      document.getElementById('game-details').classList.add('hidden');
+    }
+
+    // Compute recommended games based on similarity with installed games
+    function computeRecommendedGames() {
+      let installedTags = new Set();
+      installedGames.forEach(installedGameName => {
+        let game = allGamesData.find(g => g.name === installedGameName);
+        if (game && game.tags) {
+          game.tags.forEach(tag => installedTags.add(tag));
+        }
+      });
+      let recommended = [];
+      allGamesData.forEach(game => {
+        if (!installedGames.includes(game.name)) {
+          let score = 0;
+          if (game.tags) {
+            game.tags.forEach(tag => {
+              if (installedTags.has(tag)) score++;
+            });
+          }
+          if (score > 0) {
+            recommended.push({ ...game, score });
+          }
+        }
+      });
+      recommended.sort((a, b) => b.score - a.score);
+      return recommended.slice(0, 5);
+    }
+
+    // Render the recommended games carousel
+    function renderRecommendedCarousel() {
+      const recommended = computeRecommendedGames();
+      const carousel = document.getElementById("recommended-carousel");
+      carousel.innerHTML = "";
+      recommended.forEach((game, index) => {
+        const item = document.createElement("div");
+        item.classList.add("carousel-item");
+        const gameDiv = document.createElement("div");
+        gameDiv.classList.add("game-item");
+        // Recommended game image and title.
+        const img = document.createElement("img");
+        img.src = game.logo;
+        gameDiv.appendChild(img);
+        const title = document.createElement("h3");
+        title.textContent = game.name;
+        gameDiv.appendChild(title);
+        const installBtn = document.createElement("button");
+        if (installedGames.includes(game.name)) {
+          installBtn.textContent = "Installed";
+          installBtn.disabled = true;
+        } else {
+          installBtn.textContent = "Install";
+          installBtn.onclick = (e) => {
+            e.stopPropagation();
+            installGame(game);
+          };
+        }
+        gameDiv.appendChild(installBtn);
+        gameDiv.onclick = () => showGameDetails(game);
+        item.appendChild(gameDiv);
+        carousel.appendChild(item);
+      });
+      renderCarouselDots(recommended.length);
+      currentCarouselIndex = 0;
+      showCarouselItem(currentCarouselIndex);
+      startCarouselAutoplay();
+    }
+
+    // Carousel navigation functions
+    function showCarouselItem(index) {
+      const carousel = document.getElementById("recommended-carousel");
+      const total = carousel.children.length;
+      if (total === 0) return;
+      if (index < 0) index = total - 1;
+      if (index >= total) index = 0;
+      currentCarouselIndex = index;
+      carousel.style.transform = `translateX(-${index * 100}%)`;
+      updateCarouselDots();
+    }
+    function nextCarouselItem() { showCarouselItem(currentCarouselIndex + 1); }
+    function prevCarouselItem() { showCarouselItem(currentCarouselIndex - 1); }
+    function startCarouselAutoplay() {
+      clearInterval(carouselInterval);
+      carouselInterval = setInterval(() => { nextCarouselItem(); }, 3000);
+    }
+    function renderCarouselDots(count) {
+      const dotsContainer = document.getElementById("carousel-dots");
+      dotsContainer.innerHTML = "";
+      for (let i = 0; i < count; i++) {
+        const dot = document.createElement("span");
+        dot.classList.add("carousel-dot");
+        dot.onclick = () => { showCarouselItem(i); startCarouselAutoplay(); };
+        dotsContainer.appendChild(dot);
+      }
+      updateCarouselDots();
+    }
+    function updateCarouselDots() {
+      const dots = document.querySelectorAll(".carousel-dot");
+      dots.forEach((dot, index) => {
+        if (index === currentCarouselIndex) { dot.classList.add("active"); }
+        else { dot.classList.remove("active"); }
+      });
+    }
+    // Attach arrow events for carousel
+    document.getElementById("carousel-prev").onclick = () => { prevCarouselItem(); startCarouselAutoplay(); };
+    document.getElementById("carousel-next").onclick = () => { nextCarouselItem(); startCarouselAutoplay(); };
+
+    // Filter games by search query
+    function searchGames() {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(async () => {
+        const query = document.getElementById("search-bar").value.toLowerCase();
+        const filteredGames = allGamesData.filter(game => game.name.toLowerCase().includes(query));
+        renderSearchResults(filteredGames);
+      }, 300);
+    }
+    // Display search results
+    function renderSearchResults(games) {
+      const searchResultsContainer = document.getElementById("game-list");
+      searchResultsContainer.innerHTML = "";
+      games.forEach(game => {
+        const gameItem = document.createElement('div');
+        gameItem.classList.add('game-item');
+        gameItem.onclick = () => showGameDetails(game);
+        const gameLogo = document.createElement('img');
+        gameLogo.src = game.logo;
+        gameItem.appendChild(gameLogo);
+        const gameTitle = document.createElement('h4');
+        gameTitle.textContent = game.name;
+        gameItem.appendChild(gameTitle);
+        const installButton = document.createElement('button');
+        if (installedGames.includes(game.name)) {
+          installButton.textContent = "Installed";
+          installButton.disabled = true;
+        } else {
+          installButton.textContent = "Install";
+          installButton.onclick = (event) => {
+            event.stopPropagation();
+            installGame(game);
+          };
+        }
+        gameItem.appendChild(installButton);
+        searchResultsContainer.appendChild(gameItem);
+      });
+    }
+
+    // On page load, show the Get Games screen and attach close event for details overlay.
+    window.addEventListener("load", () => {
+      toggleGetGames();
+      document.getElementById('close-details').addEventListener('click', closeGameDetails);
+    });
+  </script>
+</body>
+</html>

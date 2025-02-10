@@ -1,0 +1,9 @@
+services:
+  - name: ashen-proxy
+    type: web
+    env: node
+    buildCommand: npm install
+    startCommand: node src/index.js
+    plan: free
+    autoDeploy: true
+    region: oregon

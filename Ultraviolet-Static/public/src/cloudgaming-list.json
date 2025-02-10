@@ -1,0 +1,46 @@
+[
+  {
+    "name": "Amazon Luna",
+    "url": "https://luna.amazon.com/"
+  },
+  {
+    "name": "Xbox Cloud Gaming",
+    "url": "https://www.xbox.com/en-US/play"
+  },
+  {
+    "name": "Geforce Now",
+    "url": "https://play.geforcenow.com/mall/"
+  },
+  {
+    "name": "Cloudgaming.my",
+    "url": "https://www.cloudgaming.my/"
+  },
+  {
+    "name": "Shadow",
+    "url": "https://shadow.tech/"
+  },
+  {
+    "name": "Boosteroid",
+    "url": "https://boosteroid.com/"
+  },
+  {
+    "name": "AirGPU",
+    "url": "https://app.airgpu.com/"
+  },
+  {
+    "name": "Apps on the Fly",
+    "url": "https://app.apponfly.com/"
+  },
+  {
+    "name": "Blacknut",
+    "url": "https://www.blacknut.com/"
+  },
+  {
+    "name": "Highscore",
+    "url": "https://www.highscore.com"
+  },
+  {
+    "name": "GameNow",
+    "url": "https://gamenow.gg/"
+  }
+]
